@@ -1,23 +1,58 @@
 package univpm.progettoOOP.model;
 
 public class Domain {
-	private String name;
-	private String surname;
+	public String domain;
+	public String createDate;
+	public String updateDate;
+	public String country;
+	public boolean isDead;
 	
-	public Domain(String name, String surname) {
-		this.name = name;
-		this.surname = surname;
+	public Domain(String domain, String createDate, String updateDate, String country, boolean isDead) {
+		this.domain = domain;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.country = country;
+		this.isDead = isDead;
 	}
-	public String getName() {
-		return name;
+
+	public String getDomain() {
+		return domain;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setDomain(String domain) {
+		this.domain = domain;
 	}
-	public String getSurname() {
-		return surname;
+
+	public String getCreateDate() {
+		return createDate;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+	}
+	
 }
