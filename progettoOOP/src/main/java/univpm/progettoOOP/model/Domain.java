@@ -1,10 +1,10 @@
 package univpm.progettoOOP.model;
 
-public class HelloWordClass {
+public class Domain {
 	private String name;
 	private String surname;
 	
-	public HelloWordClass(String name, String surname) {
+	public Domain(String name, String surname) {
 		this.name = name;
 		this.surname = surname;
 	}
