@@ -1,4 +1,7 @@
 package univpm.progettoOOP.service;
+import java.util.HashSet;
+
+import univpm.progettoOOP.model.Domain;
 
 public class DownloadJSON {
 	public String url;
@@ -15,6 +18,8 @@ public class DownloadJSON {
 		this.url = url;
 	}
 	
-	//APIcall(){};
+	public HashSet<Domain> APIcall(){
+		
+	}
 	
 }
