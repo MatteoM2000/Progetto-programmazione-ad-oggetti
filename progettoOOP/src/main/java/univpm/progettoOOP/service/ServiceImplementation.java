@@ -3,6 +3,8 @@ package univpm.progettoOOP.service;
 import univpm.progettoOOP.model.Domain;
 
 import java.util.HashSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,11 @@ public class ServiceImplementation implements DomainService{
 	public HashSet<Domain> getDomains(){
 		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
 		return dj.APIcall();
-		//return domainList;
+	}
+	
+	public Domain getMetadata(){
+		Domain d = new Domain("string",LocalDateTime.now().toString(),LocalDateTime.now().toString(),"string",false);
+		return d;
 	}
 	/*getDomains()
 	getMetadata()

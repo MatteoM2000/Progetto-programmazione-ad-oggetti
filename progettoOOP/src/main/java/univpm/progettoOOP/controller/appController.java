@@ -13,12 +13,17 @@ import univpm.progettoOOP.model.*;
 public class appController {
 	@Autowired
 	DomainService ds;
-	//String url; inserito in classi successive
+
 	
 	@GetMapping("/domains")
 		public ResponseEntity<Object> getDomains(){
-		//url = "https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true";
-			return new ResponseEntity<>(ds.getDomains(),HttpStatus.OK);
+		return new ResponseEntity<>(ds.getDomains(), HttpStatus.OK);
+		
+		
+	}
+	@GetMapping("/metadata")
+		public ResponseEntity<Object> getMetadata(){
+		return new ResponseEntity<>(ds.getMetadata(), HttpStatus.OK);
 	}
 	
 }

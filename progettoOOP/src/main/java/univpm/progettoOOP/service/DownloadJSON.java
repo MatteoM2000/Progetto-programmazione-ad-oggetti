@@ -29,7 +29,7 @@ public class DownloadJSON {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+	 //Chiamata API standard
 	public HashSet<Domain> APIcall(){
 		HashSet<Domain> domainList = new HashSet<>();
 		JSONParser parser = new JSONParser();
