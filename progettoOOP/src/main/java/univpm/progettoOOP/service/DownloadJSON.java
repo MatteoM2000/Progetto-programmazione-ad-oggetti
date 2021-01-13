@@ -46,7 +46,7 @@ public class DownloadJSON {
 				for(Object o: a) {
 					domain = (JSONObject) o;
 					d = new Domain((String) domain.get("domain"),(String) domain.get("create_date"),(String) domain.get("update_date"),
-							(String) domain.get("country"),true);
+							(String) domain.get("country"),"true");
 					domainList.add(d);
 				}
 			}

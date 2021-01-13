@@ -16,11 +16,13 @@ public class ServiceImplementation implements DomainService{
 	
 	public HashSet<Domain> getDomains(){
 		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
-		return dj.APIcall();
+		domainList = dj.APIcall();
+		return domainList;
 	}
 	
 	public Domain getMetadata(){
-		Domain d = new Domain("string",LocalDateTime.now().toString(),LocalDateTime.now().toString(),"string",false);
+		String time = LocalDateTime.now().toString();
+		Domain d = new Domain("string",time,time,"string","string");
 		return d;
 	}
 	/*getDomains()
