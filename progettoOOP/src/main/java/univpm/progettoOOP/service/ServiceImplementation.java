@@ -1,9 +1,9 @@
 package univpm.progettoOOP.service;
 
+import univpm.progettoOOP.filters.*;
 import univpm.progettoOOP.model.Domain;
 
 import java.util.HashSet;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class ServiceImplementation implements DomainService{
 	
 	public HashSet<Domain> getDomains(){
 		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
-		domainList = dj.APIcall();
+		this.domainList = dj.APIcall();
 		return domainList;
 	}
 	
@@ -25,7 +25,25 @@ public class ServiceImplementation implements DomainService{
 		Domain d = new Domain("string",time,time,"string","string");
 		return d;
 	}
-	/*getDomains()
-	getMetadata()
-	getFilter()*/
+	
+	public HashSet<Domain> getFilter(String hosting, String update/*, String creation*/){
+		Filter f;
+		DownloadJSON dj;		
+		String url =" https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true";
+		if(!hosting.isEmpty()) 
+			url = url.concat("&country=").concat(hosting);
+		dj = new DownloadJSON(url);
+		this.domainList = dj.APIcall();
+		if(!update.isEmpty()) {
+			f = new byLastUpdate(this.domainList);
+			this.domainList = f.toFilter(update);
+		}
+		/*if(creation!=null) {
+			f = new byCreationDate(this.domainList);
+			this.domainList = f.toFilter(creation);
+		}*/
+		
+		return this.domainList;
+	}
+
 }

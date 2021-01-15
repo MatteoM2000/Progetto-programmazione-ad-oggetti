@@ -8,6 +8,7 @@ public interface DomainService {
 	
 	HashSet<Domain> getDomains();
 	Domain getMetadata();
+	HashSet<Domain> getFilter(String hosting, String update/*, String creation*/);
 	/*public getDomains();
 	public getMetadata();
 	public getFilter();
