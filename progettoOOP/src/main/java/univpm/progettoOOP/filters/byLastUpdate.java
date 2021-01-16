@@ -12,8 +12,13 @@ public class byLastUpdate extends Filter{
 	
 	@Override
 	public HashSet<Domain> toFilter(String value){
+		HashSet<Domain> toRemove = new HashSet<>();
 		for(Domain d: super.filteredList)
-			if(!d.getUpdateDate().contains(value)) super.filteredList.remove(d);
+			if(d.getUpdateDate()!=null) {
+				if(!d.getUpdateDate().contains(value))
+					toRemove.add(d);
+			} else toRemove.add(d);
+		super.filteredList.removeAll(toRemove);
 		return super.filteredList;
 	}
 }

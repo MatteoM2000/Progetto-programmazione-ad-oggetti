@@ -26,7 +26,7 @@ public class ServiceImplementation implements DomainService{
 		return d;
 	}
 	
-	public HashSet<Domain> getFilter(String hosting, String update/*, String creation*/){
+	public HashSet<Domain> getFilter(String hosting, String update, String create){
 		Filter f;
 		DownloadJSON dj;		
 		String url =" https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true";
@@ -38,10 +38,10 @@ public class ServiceImplementation implements DomainService{
 			f = new byLastUpdate(this.domainList);
 			this.domainList = f.toFilter(update);
 		}
-		/*if(creation!=null) {
+		if(!create.isEmpty()) {
 			f = new byCreationDate(this.domainList);
-			this.domainList = f.toFilter(creation);
-		}*/
+			this.domainList = f.toFilter(create);
+		}
 		
 		return this.domainList;
 	}
