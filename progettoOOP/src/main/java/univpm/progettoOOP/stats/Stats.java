@@ -33,5 +33,5 @@ public abstract class Stats {
      */
     public abstract JSONObject calculateStat();
     }
-    
+
 
