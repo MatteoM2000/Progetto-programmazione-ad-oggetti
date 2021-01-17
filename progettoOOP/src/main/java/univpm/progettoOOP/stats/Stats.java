@@ -2,7 +2,7 @@ package univpm.progettoOOP.stats;
 
 import univpm.progettoOOP.model.Domain;
 
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 import java.util.HashSet;
 
