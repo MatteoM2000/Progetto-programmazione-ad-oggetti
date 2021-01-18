@@ -37,7 +37,7 @@ public class Quantity extends Stats {
     public JSONObject calculateStat() {
     	this.quantity = super.domainList.size();
     	JSONObject Qjson = new JSONObject();
-    	Qjson.put("quantita' dimensioni hashset", this.quantity);
+    	Qjson.put("Domini analizzati", this.quantity);
     	
     	
     return Qjson;

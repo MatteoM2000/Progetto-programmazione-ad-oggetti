@@ -26,7 +26,7 @@ public abstract class Stats {
      * @param domainlist: Hashset dei domini sui quali elaborare le statistiche
      */
     public Stats(HashSet<Domain> domainList) {
-    
+    	this.domainList = domainList;
     }
     /**
      * Metodo astratto per calcolare le statistiche

@@ -30,6 +30,7 @@ public class hostingCountry extends Stats {
 	 * <b>Metodo</b> che elabora contatori sui paesi di hosting, <b>restituendo</b> un oggetto JSON
 	 * @see Domain#getCountry()
 	 */
+	@SuppressWarnings("unchecked")
 	public JSONObject calculateStat() {
 		
 		
@@ -42,34 +43,33 @@ public class hostingCountry extends Stats {
 		int contAltro = 0, contNull = 0;
 		
 		for(Domain d: super.domainList) {
-    		switch(d.getCountry()) {
+			if(d.getCountry()==null) contNull++;
+			else {
+				switch(d.getCountry()) {
     	
-    		case "US": contUS++;
+				case "US": contUS++;
     			       break;
     		
-    		case "GB": contGB++;
+				case "GB": contGB++;
     	               break;
     	               
-    		case "IE": contIE++;
+				case "IE": contIE++;
     	               break;
     	               
-    		case "IT": contIT++;
+				case "IT": contIT++;
     	               break;
     	               
-    		case "DE": contDE++;
+				case "DE": contDE++;
     	               break;
     	               
-    		case "FR": contFR++;
+				case "FR": contFR++;
     		           break;
     		
-    		case "JP": contJP++;
-	           break;
-                       
-    		case "null": contNull++;
-    		             break;
-                       
-    		default:  contAltro++; 
-    		}
+				case "JP": contJP++;
+						break;                       
+				default:  contAltro++; 
+				}
+			}
         }
     	this.hostingCountry.put("US", contUS);
     	this.hostingCountry.put("GB", contGB);
@@ -80,7 +80,7 @@ public class hostingCountry extends Stats {
     	this.hostingCountry.put("JP", contJP);
     	this.hostingCountry.put("null", contNull);
     	this.hostingCountry.put("altro", contAltro);
-    	
+
     	return hostingCountry;
     }
 				
