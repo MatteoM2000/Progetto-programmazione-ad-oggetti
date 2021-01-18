@@ -4,6 +4,7 @@ import univpm.progettoOOP.model.Domain;
 
 import org.json.simple.JSONObject;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -33,55 +34,19 @@ public class hostingCountry extends Stats {
 	public JSONObject calculateStat() {
 		
 		
-		
-		/**
-		 * <b>Inizializzazione</b> contatori dei principali paesi di hosting, derivati dall'analisi sull'API
-		 */
-		
-		int contUS = 0, contGB = 0, contIE = 0, contIT = 0, contDE = 0, contFR = 0, contJP = 0;
-		int contAltro = 0, contNull = 0;
-		
+		HashMap <String, Integer> country = new HashMap<>();
+		int contNull=0;
 		for(Domain d: super.domainList) {
-    		switch(d.getCountry()) {
-    	
-    		case "US": contUS++;
-    			       break;
-    		
-    		case "GB": contGB++;
-    	               break;
-    	               
-    		case "IE": contIE++;
-    	               break;
-    	               
-    		case "IT": contIT++;
-    	               break;
-    	               
-    		case "DE": contDE++;
-    	               break;
-    	               
-    		case "FR": contFR++;
-    		           break;
-    		
-    		case "JP": contJP++;
-	           break;
-                       
-    		case "null": contNull++;
-    		             break;
-                       
-    		default:  contAltro++; 
-    		}
-        }
-    	this.hostingCountry.put("US", contUS);
-    	this.hostingCountry.put("GB", contGB);
-    	this.hostingCountry.put("IE", contIE);
-    	this.hostingCountry.put("IT", contIT);
-    	this.hostingCountry.put("DE", contDE);
-    	this.hostingCountry.put("FR", contFR);
-    	this.hostingCountry.put("JP", contJP);
-    	this.hostingCountry.put("null", contNull);
-    	this.hostingCountry.put("altro", contAltro);
-    	
-    	return hostingCountry;
+			if(d.getCountry()==null) contNull++;
+			else {
+				if(country.containsKey(d.getCountry()))
+					country.compute(d.getCountry(),(key,val) -> val+1);
+				else country.put(d.getCountry(), 1);
+			}
+		}
+		country.put("null", contNull);
+		this.hostingCountry.put("Paesi di Hosting", country);
+		return hostingCountry;
     }
 				
 	}
