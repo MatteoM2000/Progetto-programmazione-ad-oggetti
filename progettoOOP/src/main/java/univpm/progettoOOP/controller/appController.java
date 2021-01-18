@@ -43,4 +43,8 @@ public class appController {
 		public ResponseEntity<Object> getFilter(@RequestBody JSONObject filtersBody){
 		return new ResponseEntity<>(ds.getFilter(filtersBody),HttpStatus.OK);
 	}
+	@GetMapping("/stats")
+	public ResponseEntity<Object> getStats(){
+	return new ResponseEntity<>(ds.getStats(), HttpStatus.OK);
+}
 }

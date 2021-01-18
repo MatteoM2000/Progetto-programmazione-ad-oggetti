@@ -12,6 +12,8 @@ public interface DomainService {
 	Domain getMetadata();
 	HashSet<Domain> getFilter(String domain, String hosting, String update, String create);
 	HashSet<Domain> getFilter(JSONObject filterBody);
+	JSONObject getStats();
+	
 	/*public getDomains();
 	public getMetadata();
 	public getFilter();

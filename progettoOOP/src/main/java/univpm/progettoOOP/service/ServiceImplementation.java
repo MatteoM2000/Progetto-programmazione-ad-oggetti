@@ -2,6 +2,11 @@ package univpm.progettoOOP.service;
 
 import univpm.progettoOOP.filters.*;
 import univpm.progettoOOP.model.Domain;
+import univpm.progettoOOP.stats.Keywords;
+import univpm.progettoOOP.stats.Quantity;
+import univpm.progettoOOP.stats.Stats;
+import univpm.progettoOOP.stats.UpdateTime;
+import univpm.progettoOOP.stats.hostingCountry;
 
 import java.util.HashSet;
 import java.time.LocalDateTime;
@@ -71,4 +76,27 @@ public class ServiceImplementation implements DomainService{
 		return this.domainList;
 	}
 
+	public JSONObject getStats() {
+		JSONObject Stat = new JSONObject();
+		Stats s;
+		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
+		this.domainList = dj.APIcall();
+		
+		
+		s= new hostingCountry (this.domainList);
+		Stat.put("Nazione di Hosting", s.calculateStat());
+		s= new Keywords (this.domainList);
+		Stat.put("Parole chiave", s.calculateStat());
+		s= new Quantity (this.domainList);
+		Stat.put("Quantità domini", s.calculateStat());
+		s= new UpdateTime (this.domainList);
+		Stat.put("Tempo medio di Update", s.calculateStat());
+		
+		
+		return Stat;
+
+		
+		
+	}
+	
 }
