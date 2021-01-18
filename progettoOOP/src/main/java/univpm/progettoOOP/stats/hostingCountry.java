@@ -31,6 +31,7 @@ public class hostingCountry extends Stats {
 	 * <b>Metodo</b> che elabora contatori sui paesi di hosting, <b>restituendo</b> un oggetto JSON
 	 * @see Domain#getCountry()
 	 */
+	@SuppressWarnings("unchecked")
 	public JSONObject calculateStat() {
 		
 		
@@ -47,6 +48,7 @@ public class hostingCountry extends Stats {
 		country.put("null", contNull);
 		this.hostingCountry.put("Paesi di Hosting", country);
 		return hostingCountry;
+
     }
 				
 	}

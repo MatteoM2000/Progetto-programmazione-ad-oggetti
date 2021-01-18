@@ -50,7 +50,7 @@ public class UpdateTime extends Stats {
 		
 			this.AverageUpdateTime = UpdateTimes / super.domainList.size();
 			JSONObject UTjson = new JSONObject();
-	    	UTjson.put("tempo medio update domini", this.AverageUpdateTime);
+	    	UTjson.put("Tempo medio update domini", this.AverageUpdateTime);
 	    	return UTjson;
     }
 			
