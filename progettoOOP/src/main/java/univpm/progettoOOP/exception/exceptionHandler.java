@@ -17,8 +17,8 @@ public class exceptionHandler {
 	
 	@ExceptionHandler(value = {APInotworking.class})
 	public ResponseEntity<Object> handleAPInotworking(APInotworking e){
-		exceptionModel exc = new exceptionModel(e.getMessage(), HttpStatus.NO_CONTENT, ZonedDateTime.now());
-		return new ResponseEntity<>(exc,HttpStatus.NO_CONTENT);
+		exceptionModel exc = new exceptionModel(e.getMessage(), HttpStatus.OK, ZonedDateTime.now());
+		return new ResponseEntity<>(exc,HttpStatus.OK);
 	}
 	
 	@ExceptionHandler(value = {wrongRequest.class})

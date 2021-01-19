@@ -12,7 +12,7 @@ public interface DomainService {
 	HashSet<Domain> getDomains();
 	Domain getMetadata();
 	HashSet<Domain> getFilter(String domain, String hosting, String update, String create) throws APInotworking;
-	HashSet<Domain> getFilter(JSONObject filterBody);
-	JSONObject getStats(String domain, String hosting, String update, String create);
+	HashSet<Domain> getFilter(JSONObject filterBody) throws APInotworking;
+	JSONObject getStats(String domain, String hosting, String update, String create) throws APInotworking;
 	
 }

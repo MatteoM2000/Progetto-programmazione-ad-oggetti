@@ -57,11 +57,10 @@ public class ServiceImplementation implements DomainService{
 		}
 		if(this.domainList.isEmpty())
 			throw new APInotworking();
-		
-		return this.domainList;
+		else {return this.domainList;}
 	}
 	
-	public HashSet<Domain> getFilter(JSONObject filterBody){
+	public HashSet<Domain> getFilter(JSONObject filterBody) throws APInotworking{
 		Filter f;
 		DownloadJSON dj;		
 		String url =" https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true";
@@ -79,15 +78,19 @@ public class ServiceImplementation implements DomainService{
 			f = new byCreationDate(this.domainList);
 			this.domainList = f.toFilter((String)filterBody.get("create"));
 		}
+		if(this.domainList.isEmpty())
+			throw new APInotworking();
 		
-		return this.domainList;
+		else{return this.domainList;}
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject getStats(String domain, String hosting, String update, String create){
+	public JSONObject getStats(String domain, String hosting, String update, String create) throws APInotworking{
 		try {
 			getFilter(domain, hosting, update, create);
-		} catch (APInotworking e) {}
+		} catch (Exception e) {
+			throw new APInotworking();
+		}
 		JSONObject Stat = new JSONObject();
 		Stats s;		
 		

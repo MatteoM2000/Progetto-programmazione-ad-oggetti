@@ -44,7 +44,7 @@ public class appController {
 	}
 	
 	@PostMapping("/filter")
-		public ResponseEntity<Object> getFilter(@RequestBody JSONObject filtersBody){
+		public ResponseEntity<Object> getFilter(@RequestBody JSONObject filtersBody) throws APInotworking{
 		return new ResponseEntity<>(ds.getFilter(filtersBody),HttpStatus.OK);
 	}
 	
@@ -52,7 +52,7 @@ public class appController {
 	public ResponseEntity<Object> getStats(@RequestParam(value="domain", defaultValue="") String domain,
 											@RequestParam(value="hosting", defaultValue="") String hosting, 
 											@RequestParam(value="update", defaultValue="") String update,
-											@RequestParam(value="create", defaultValue="") String create){
+											@RequestParam(value="create", defaultValue="") String create) throws APInotworking{
 	return new ResponseEntity<>(ds.getStats(domain, hosting, update, create), HttpStatus.OK);
 	}
 	
