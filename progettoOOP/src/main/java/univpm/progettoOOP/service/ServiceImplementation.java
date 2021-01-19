@@ -1,5 +1,6 @@
 package univpm.progettoOOP.service;
 
+import univpm.progettoOOP.exception.APInotworking;
 import univpm.progettoOOP.exception.APIunreachable;
 import univpm.progettoOOP.filters.*;
 import univpm.progettoOOP.model.Domain;
@@ -25,6 +26,8 @@ public class ServiceImplementation implements DomainService{
 		//throw new APIunreachable();
 		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
 		this.domainList = dj.APIcall();
+		if(this.domainList.isEmpty())
+			throw new APIunreachable();
 		return domainList;
 	}
 	
@@ -34,7 +37,7 @@ public class ServiceImplementation implements DomainService{
 		return d;
 	}
 	
-	public HashSet<Domain> getFilter(String domain, String hosting, String update, String create){
+	public HashSet<Domain> getFilter(String domain, String hosting, String update, String create) throws APInotworking{
 		Filter f;
 		DownloadJSON dj;		
 		String url =" https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true";
@@ -52,6 +55,8 @@ public class ServiceImplementation implements DomainService{
 			f = new byCreationDate(this.domainList);
 			this.domainList = f.toFilter(create);
 		}
+		if(this.domainList.isEmpty())
+			throw new APInotworking();
 		
 		return this.domainList;
 	}
@@ -79,13 +84,12 @@ public class ServiceImplementation implements DomainService{
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject getStats(String domain, String hosting, String update, String create) {
-		getFilter(domain, hosting, update, create);
+	public JSONObject getStats(String domain, String hosting, String update, String create){
+		try {
+			getFilter(domain, hosting, update, create);
+		} catch (APInotworking e) {}
 		JSONObject Stat = new JSONObject();
-		Stats s;
-		//DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
-		//this.domainList = dj.APIcall();
-		
+		Stats s;		
 		
 		s= new hostingCountry (this.domainList);
 		Stat.put("Nazione di Hosting", s.calculateStat());

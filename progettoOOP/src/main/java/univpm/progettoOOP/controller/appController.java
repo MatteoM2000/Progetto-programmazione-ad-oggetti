@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import univpm.progettoOOP.exception.APIunreachable;
+import univpm.progettoOOP.exception.APInotworking;
+import univpm.progettoOOP.exception.wrongRequest;
 import univpm.progettoOOP.service.*;
 
 @RestController
@@ -37,7 +38,7 @@ public class appController {
 		public ResponseEntity<Object> getFilter(@RequestParam(value="domain", defaultValue="") String domain,
 												@RequestParam(value="hosting", defaultValue="") String hosting, 
 	 											@RequestParam(value="update", defaultValue="") String update,
-	 											@RequestParam(value="create", defaultValue="") String create){
+	 											@RequestParam(value="create", defaultValue="") String create) throws APInotworking{
 		
 		return new ResponseEntity<>(ds.getFilter(domain, hosting, update, create),HttpStatus.OK);
 	}
@@ -53,6 +54,15 @@ public class appController {
 											@RequestParam(value="update", defaultValue="") String update,
 											@RequestParam(value="create", defaultValue="") String create){
 	return new ResponseEntity<>(ds.getStats(domain, hosting, update, create), HttpStatus.OK);
+	}
+	
+	@GetMapping("/error")
+	 public ResponseEntity<Object> errorGet() throws wrongRequest {
+		throw new wrongRequest();
+	}
+	@PostMapping("/error")
+	 public ResponseEntity<Object> errorPost() throws wrongRequest {
+		throw new wrongRequest();
 	}
 	
 		
