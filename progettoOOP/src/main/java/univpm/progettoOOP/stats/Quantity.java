@@ -34,7 +34,8 @@ public class Quantity extends Stats {
 	/**
 	 * <b>Metodo</b> che elabora il calcolo della quantita' di domini
 	 */
-    public JSONObject calculateStat() {
+    @SuppressWarnings("unchecked")
+	public JSONObject calculateStat() {
     	this.quantity = super.domainList.size();
     	JSONObject Qjson = new JSONObject();
     	Qjson.put("Domini analizzati", this.quantity);

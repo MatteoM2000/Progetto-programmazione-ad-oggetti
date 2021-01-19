@@ -22,12 +22,12 @@ public class ServiceImplementation implements DomainService{
 	//costruttore
 	public ServiceImplementation() {}
 	
-	public HashSet<Domain> getDomains(){
+	public HashSet<Domain> getDomains() throws APInotworking{
 		//throw new APIunreachable();
 		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
 		this.domainList = dj.APIcall();
 		if(this.domainList.isEmpty())
-			throw new APIunreachable();
+			throw new APInotworking();
 		return domainList;
 	}
 	
@@ -37,7 +37,7 @@ public class ServiceImplementation implements DomainService{
 		return d;
 	}
 	
-	public HashSet<Domain> getFilter(String domain, String hosting, String update, String create) throws APInotworking{
+	public HashSet<Domain> getFilter(String domain, String hosting, String update, String create) throws APIunreachable{
 		Filter f;
 		DownloadJSON dj;		
 		String url =" https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true";
@@ -56,11 +56,11 @@ public class ServiceImplementation implements DomainService{
 			this.domainList = f.toFilter(create);
 		}
 		if(this.domainList.isEmpty())
-			throw new APInotworking();
+			throw new APIunreachable();
 		else {return this.domainList;}
 	}
 	
-	public HashSet<Domain> getFilter(JSONObject filterBody) throws APInotworking{
+	public HashSet<Domain> getFilter(JSONObject filterBody) throws APIunreachable{
 		Filter f;
 		DownloadJSON dj;		
 		String url =" https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true";
@@ -79,17 +79,17 @@ public class ServiceImplementation implements DomainService{
 			this.domainList = f.toFilter((String)filterBody.get("create"));
 		}
 		if(this.domainList.isEmpty())
-			throw new APInotworking();
+			throw new APIunreachable();
 		
 		else{return this.domainList;}
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject getStats(String domain, String hosting, String update, String create) throws APInotworking{
+	public JSONObject getStats(String domain, String hosting, String update, String create) throws APIunreachable{
 		try {
 			getFilter(domain, hosting, update, create);
 		} catch (Exception e) {
-			throw new APInotworking();
+			throw new APIunreachable();
 		}
 		JSONObject Stat = new JSONObject();
 		Stats s;		

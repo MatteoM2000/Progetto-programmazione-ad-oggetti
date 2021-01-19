@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import univpm.progettoOOP.exception.APInotworking;
+import univpm.progettoOOP.exception.APIunreachable;
 import univpm.progettoOOP.exception.wrongRequest;
 import univpm.progettoOOP.service.*;
 
@@ -21,7 +22,7 @@ public class appController {
 
 	
 	@GetMapping("/domains")
-		public ResponseEntity<Object> getDomains(){		
+		public ResponseEntity<Object> getDomains() throws APInotworking{		
 		return new ResponseEntity<>(ds.getDomains(), HttpStatus.OK);
 		
 		
@@ -38,13 +39,13 @@ public class appController {
 		public ResponseEntity<Object> getFilter(@RequestParam(value="domain", defaultValue="") String domain,
 												@RequestParam(value="hosting", defaultValue="") String hosting, 
 	 											@RequestParam(value="update", defaultValue="") String update,
-	 											@RequestParam(value="create", defaultValue="") String create) throws APInotworking{
+	 											@RequestParam(value="create", defaultValue="") String create) throws APIunreachable{
 		
 		return new ResponseEntity<>(ds.getFilter(domain, hosting, update, create),HttpStatus.OK);
 	}
 	
 	@PostMapping("/filter")
-		public ResponseEntity<Object> getFilter(@RequestBody JSONObject filtersBody) throws APInotworking{
+		public ResponseEntity<Object> getFilter(@RequestBody JSONObject filtersBody) throws APIunreachable{
 		return new ResponseEntity<>(ds.getFilter(filtersBody),HttpStatus.OK);
 	}
 	
@@ -52,7 +53,7 @@ public class appController {
 	public ResponseEntity<Object> getStats(@RequestParam(value="domain", defaultValue="") String domain,
 											@RequestParam(value="hosting", defaultValue="") String hosting, 
 											@RequestParam(value="update", defaultValue="") String update,
-											@RequestParam(value="create", defaultValue="") String create) throws APInotworking{
+											@RequestParam(value="create", defaultValue="") String create) throws APIunreachable{
 	return new ResponseEntity<>(ds.getStats(domain, hosting, update, create), HttpStatus.OK);
 	}
 	

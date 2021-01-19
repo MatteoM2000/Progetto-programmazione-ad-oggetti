@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class exceptionHandler {
 	@ExceptionHandler(value = {APIunreachable.class})
 	public ResponseEntity<Object> handleAPIunreachable(APIunreachable e){
-		exceptionModel exc = new exceptionModel(e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE, ZonedDateTime.now());
-		return new ResponseEntity<>(exc,HttpStatus.SERVICE_UNAVAILABLE);
+		exceptionModel exc = new exceptionModel(e.getMessage(), HttpStatus.OK, ZonedDateTime.now());
+		return new ResponseEntity<>(exc,HttpStatus.OK);
 	}
 	
 	@ExceptionHandler(value = {APInotworking.class})
 	public ResponseEntity<Object> handleAPInotworking(APInotworking e){
-		exceptionModel exc = new exceptionModel(e.getMessage(), HttpStatus.OK, ZonedDateTime.now());
-		return new ResponseEntity<>(exc,HttpStatus.OK);
+		exceptionModel exc = new exceptionModel(e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE, ZonedDateTime.now());
+		return new ResponseEntity<>(exc,HttpStatus.SERVICE_UNAVAILABLE);
 	}
 	
 	@ExceptionHandler(value = {wrongRequest.class})
