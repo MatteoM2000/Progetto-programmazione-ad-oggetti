@@ -34,6 +34,7 @@ public class Keywords extends Stats {
 	 * <b>Metodo</b> che elabora il conteggio delle parole chiave
 	 */
 	
+	@SuppressWarnings("unchecked")
 	public JSONObject calculateStat() {
     	int contFinancial = 0, contBusiness = 0, contLogin = 0, contMarketing = 0, contArchive = 0;
     	int contAltro = 0;
@@ -64,7 +65,7 @@ public class Keywords extends Stats {
     	this.Keyword.put("marketing", contMarketing);
     	this.Keyword.put("archive", contArchive);
     	this.Keyword.put("altro", contAltro);
-    	
+    
     	return Keyword;
     	
     }	

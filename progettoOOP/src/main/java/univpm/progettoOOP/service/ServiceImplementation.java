@@ -1,5 +1,6 @@
 package univpm.progettoOOP.service;
 
+import univpm.progettoOOP.exception.APIunreachable;
 import univpm.progettoOOP.filters.*;
 import univpm.progettoOOP.model.Domain;
 import univpm.progettoOOP.stats.Keywords;
@@ -21,6 +22,7 @@ public class ServiceImplementation implements DomainService{
 	public ServiceImplementation() {}
 	
 	public HashSet<Domain> getDomains(){
+		//throw new APIunreachable();
 		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
 		this.domainList = dj.APIcall();
 		return domainList;
@@ -76,11 +78,13 @@ public class ServiceImplementation implements DomainService{
 		return this.domainList;
 	}
 
-	public JSONObject getStats() {
+	@SuppressWarnings("unchecked")
+	public JSONObject getStats(String domain, String hosting, String update, String create) {
+		getFilter(domain, hosting, update, create);
 		JSONObject Stat = new JSONObject();
 		Stats s;
-		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
-		this.domainList = dj.APIcall();
+		//DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
+		//this.domainList = dj.APIcall();
 		
 		
 		s= new hostingCountry (this.domainList);

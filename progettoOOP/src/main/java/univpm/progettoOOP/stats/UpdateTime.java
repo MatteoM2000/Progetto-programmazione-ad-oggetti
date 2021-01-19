@@ -35,7 +35,8 @@ public class UpdateTime extends Stats {
 	 * <b>Metodo</b> che elabora il calcolo del tempo medio di Update dei domini
 	 * @see Domain#getCreateDate()
 	 */
-    public JSONObject calculateStat() {
+    @SuppressWarnings("unchecked")
+	public JSONObject calculateStat() {
     	LocalDateTime today = LocalDateTime.now();
     	long oneUpdateTime, UpdateTimes = 0;
 
@@ -50,7 +51,7 @@ public class UpdateTime extends Stats {
 		
 			this.AverageUpdateTime = UpdateTimes / super.domainList.size();
 			JSONObject UTjson = new JSONObject();
-	    	UTjson.put("Tempo medio update domini", this.AverageUpdateTime);
+	    	UTjson.put("Tempo medio update domini in giorni", this.AverageUpdateTime);
 	    	return UTjson;
     }
 			

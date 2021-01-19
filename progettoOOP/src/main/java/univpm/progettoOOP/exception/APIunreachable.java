@@ -1,7 +1,7 @@
 package univpm.progettoOOP.exception;
 
-public class APIunreachable extends Exception{
+public class APIunreachable extends RuntimeException{
 	public APIunreachable() {
-		super("Impossibile connettersi all'API...");
+		super("L'API sembra non essere attualmente funzionante...");
 	}
 }
