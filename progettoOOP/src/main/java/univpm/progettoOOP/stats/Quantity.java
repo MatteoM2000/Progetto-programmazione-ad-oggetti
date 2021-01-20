@@ -32,6 +32,18 @@ public class Quantity extends Stats {
 	}
 	
 	/**
+	 * Metodo che restituisce la quantità
+	 * @return quantity
+	 */
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+
+
+	/**
 	 * Metodo che elabora il calcolo della quantita' di domini
 	 * @return Ritorna JSONObject che contiene la quantità
 	 * @see Stats#calculateStat()

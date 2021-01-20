@@ -50,7 +50,8 @@ public class hostingCountry extends Stats {
 				else country.put(d.getCountry(), 1);
 			}
 		}
-		country.put("null", contNull);
+		if(contNull != 0)
+			country.put("null", contNull);
 		this.hostingCountry.put("Paesi di Hosting", country);
 		return hostingCountry;
 
