@@ -9,10 +9,10 @@ import java.util.HashSet;
 
 
 /**
- * <b>Sottoclasse</b> relativa alla statistica del tempo medio di Update
+ * Sottoclasse relativa alla statistica del tempo medio di Update
  * @author Meloni Matteo
  * @author Rinaldi Alex
- * @version 1.0
+ * @version 1.0.0
  */
 
 public class UpdateTime extends Stats {
@@ -23,16 +23,17 @@ public class UpdateTime extends Stats {
 	public double AverageUpdateTime = 0;
 	
 	/**
-     * <b>Costruttore</b> della sottoclasse tempo medio di Update
-     * @param domainList : Hashset di domini sui quali elaborare le statistiche
+     * Costruttore UpdateTime(HashSet)
+     * @param domainList Hashset di domini sui quali elaborare le statistiche
      */
 	public UpdateTime(HashSet<Domain> domainList)  {
 		super(domainList);
 	}
 		
 	/**
-	 * <b>Metodo</b> che elabora il calcolo del tempo medio di Update dei domini
-	 * @see Domain#getCreateDate()
+	 * Metodo che elabora il calcolo del tempo medio di Update dei domini
+	 * @return JSONObject con giorni medi passati dall'ultimo update
+	 * @see Stats#calculateStat()
 	 */
     @SuppressWarnings("unchecked")
 	public JSONObject calculateStat() {

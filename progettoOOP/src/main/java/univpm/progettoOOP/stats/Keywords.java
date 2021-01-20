@@ -9,29 +9,31 @@ import java.util.HashSet;
 
 
 /**
- * <b>Sottoclasse</b> relativa alla statistica delle parole chiave
+ * Sottoclasse relativa alla statistica delle parole chiave
  * @author Meloni Matteo
  * @author Rinaldi Alex
- * @version 1.0
+ * @version 1.0.0
  */
 
 public class Keywords extends Stats {
 	
 	/**
-	 * Statistica relativa alle parole chiave
+	 * JSONObject della statistica relativa alle parole chiave
 	 */
 	public JSONObject Keyword = new JSONObject();
 	
 	/**
-     * <b>Costruttore</b> della sottoclasse Keywords
-     * @param domainList : HashSet dei domini nei quali elaborare la statistica
+     * Costruttore Keywords(HashSet)
+     * @param domainList HashSet dei domini nei quali elaborare la statistica
      */
 	public Keywords(HashSet<Domain> domainList) {
 			super(domainList);
 	}
 	
 	/**
-	 * <b>Metodo</b> che elabora il conteggio delle parole chiave
+	 * Metodo che elabora il conteggio delle parole chiave
+	 * @return JSONObject con le parole chiave presenti nei domini
+	 * @see Stats#calculateStat()
 	 */
 	
 	@SuppressWarnings("unchecked")

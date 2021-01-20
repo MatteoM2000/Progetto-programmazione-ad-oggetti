@@ -9,27 +9,31 @@ import java.util.HashSet;
 
 
 /**
- * <b>Sottoclasse</b> relativa alla statistica del paese di hosting
+ * Sottoclasse relativa alla statistica del paese di hosting
  * @author Meloni Matteo
  * @author Rinaldi Alex
- * @version 1.0
+ * @version 1.0.0
  */
 
 public class hostingCountry extends Stats {
 	
+	/**
+	 * JSONObject che contiene i paesi di hosting
+	 */
 	public final JSONObject hostingCountry = new JSONObject();
 	
 	/**
-     * <b>Costruttore</b> della sottoclasse hostingCountry
-     * @param domainlist : Hashset dei domini sui quali elaborare le statistiche
+     * Costruttore  hostingCountry(HashSet)
+     * @param domainlist Hashset dei domini sui quali elaborare le statistiche
      */
 	public hostingCountry(HashSet<Domain> domainlist) {
 		super(domainlist);
 	}
 	
 	/**
-	 * <b>Metodo</b> che elabora contatori sui paesi di hosting, <b>restituendo</b> un oggetto JSON
-	 * @see Domain#getCountry()
+	 * Metodo che elabora contatori sui paesi di hosting, restituendo un oggetto JSON
+	 * @return JSONObject con i paesi di hosting
+	 * @see Stats#calculateStat()
 	 */
 	
 	@SuppressWarnings("unchecked")

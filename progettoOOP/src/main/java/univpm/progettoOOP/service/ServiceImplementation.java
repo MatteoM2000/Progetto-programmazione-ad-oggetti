@@ -16,14 +16,36 @@ import java.time.LocalDateTime;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+
+/**
+ * Classe che implementa l'interfaccia DomainService
+ * @author Matteo Meloni
+ * @author Alex Rinaldi
+ * @version 1.0.0
+ */
 @Service
 public class ServiceImplementation implements DomainService{
+	
+	/**
+	 * HashSet di domini restituiti dall'API
+	 */
 	public HashSet<Domain> domainList = new HashSet<>();
-	//costruttore
+
+	
+	/**
+	 * Costruttore ServiceImplementation()
+	 */
 	public ServiceImplementation() {}
 	
+	
+	
+	/**
+	 * Metodo che restituisce i domini
+	 * @return HashSet di domini commerciali non più attivi
+	 * @throws APInotworking se l'API non restituisce domini con un URL standard verificato
+	 * @see DownloadJSON#APIcall()
+	 */
 	public HashSet<Domain> getDomains() throws APInotworking{
-		//throw new APIunreachable();
 		DownloadJSON dj = new DownloadJSON("https://api.domainsdb.info/v1/domains/search?limit=50&zone=com&isDead=true");
 		this.domainList = dj.APIcall();
 		if(this.domainList.isEmpty())
@@ -31,12 +53,30 @@ public class ServiceImplementation implements DomainService{
 		return domainList;
 	}
 	
+	
+	
+	/**
+	 * Metodo che restituisce i metadati
+	 * @return Domain con i metadati dell'API
+	 */
 	public Domain getMetadata(){
 		String time = LocalDateTime.now().toString();
 		Domain d = new Domain("string",time,time,"string","string");
 		return d;
 	}
 	
+	
+	
+	/**
+	 * Metodo che restituisce i domini filtrati per i parametri in input
+	 * @param domain Testo che dovrà essere contenuto nel nome del dominio
+	 * @param hosting Paese di hosting
+	 * @param update Substring che dovrà essere presente nella data di update
+	 * @param create Mese dell'anno in cui il dominio è stato creato
+	 * @return HashSet di domini filtrati secondo i parametri
+	 * @throws APIunreachable se l'API non restituisce i domini desiderati
+	 * @see DownloadJSON#APIcall()
+	 */
 	public HashSet<Domain> getFilter(String domain, String hosting, String update, String create) throws APIunreachable{
 		Filter f;
 		DownloadJSON dj;		
@@ -60,6 +100,15 @@ public class ServiceImplementation implements DomainService{
 		else {return this.domainList;}
 	}
 	
+	
+	
+	/**
+	 * Metodo che restituisce i domini filtrati per il JSONObject in input
+	 * @param filterBody JSONObject che conterrà i filtri da applicare
+	 * @return HashSet di domini filtrati secondo il JSONObject
+	 * @throws APIunreachable se l'API non restituisce i domini desiderati
+	 * @see DownloadJSON#APIcall()
+	 */
 	public HashSet<Domain> getFilter(JSONObject filterBody) throws APIunreachable{
 		Filter f;
 		DownloadJSON dj;		
@@ -84,6 +133,17 @@ public class ServiceImplementation implements DomainService{
 		else{return this.domainList;}
 	}
 
+	
+	
+	/**
+	 * Metodo che calcola statistiche su un HashSet di domini filtrati o meno
+	 * @param domain Testo che dovrà essere contenuto nel nome del dominio
+	 * @param hosting Paese di hosting
+	 * @param update Substring che dovrà essere presente nella data di update
+	 * @param create Mese dell'anno in cui il dominio è stato creato
+	 * @return JSONObject contenente le varie statistiche
+	 * @throws APIunreachable se l'API non restituisce i domini desiderati
+	 */
 	@SuppressWarnings("unchecked")
 	public JSONObject getStats(String domain, String hosting, String update, String create) throws APIunreachable{
 		try {
@@ -101,13 +161,9 @@ public class ServiceImplementation implements DomainService{
 		s= new Quantity (this.domainList);
 		Stat.put("Quantità domini", s.calculateStat());
 		s= new UpdateTime (this.domainList);
-		Stat.put("Tempo medio di Update", s.calculateStat());
+		Stat.put("Tempo medio di Update", s.calculateStat());		
 		
-		
-		return Stat;
-
-		
-		
+		return Stat;		
 	}
 	
 }
