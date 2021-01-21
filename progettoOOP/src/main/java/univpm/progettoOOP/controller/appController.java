@@ -35,7 +35,7 @@ public class appController {
 	
 	
 	/**
-	 * Rotta che restituisce domini commmerciali non più attivi
+	 * Rotta che restituisce domini commmerciali non piu' attivi
 	 * @return HashSet di domini
 	 * @throws APInotworking se l'API non restituisce domini con un URL standard verificato
 	 * @see serviceImplementation#getDomains()
@@ -63,7 +63,7 @@ public class appController {
 	
 	/**
 	 * Rotta che permette di filtrare i domini secondo parametri forniti in input
-	 * @param domain Testo che dovrà essere contenuto nel nome del dominio
+	 * @param domain Testo che dovra' essere contenuto nel nome del dominio
 	 * @param hosting Paese di hosting
 	 * @param update Substring che dovrà essere presente nella data di update
 	 * @param create Mese dell'anno in cui il dominio è stato creato
@@ -85,7 +85,7 @@ public class appController {
 	
 	/**
 	 * Rotta che permette di filtrare i domini secondo un JSONObject fornito in input
-	 * @param filtersBody JSONObject che conterrà i filtri da applicare
+	 * @param filtersBody JSONObject che conterra' i filtri da applicare
 	 * @return HashSet di domini filtrati secondo il JSONObject
 	 * @throws APIunreachable se l'API non restituisce i domini desiderati
 	 * @see serviceImplementation#getFilter(JSONObject)
@@ -99,7 +99,7 @@ public class appController {
 	
 	/**
 	 * Rotta che calcola statistiche su un HashSet di domini filtrati o meno
-	 * @param domain Testo che dovrà essere contenuto nel nome del dominio
+	 * @param domain Testo che dovra' essere contenuto nel nome del dominio
 	 * @param hosting Paese di hosting
 	 * @param update Substring che dovrà essere presente nella data di update
 	 * @param create Mese dell'anno in cui il dominio è stato creato
@@ -121,7 +121,7 @@ public class appController {
 	/**
 	 * Rotta che gestisce eccezioni riguardanti chiamate Get
 	 * @return wrongRequest exception
-	 * @throws wrongRequest se la richiesta non può essere processata
+	 * @throws wrongRequest se la richiesta non puo' essere processata
 	 */
 	@GetMapping("/error")
 	 public ResponseEntity<Object> errorGet() throws wrongRequest {
@@ -131,7 +131,7 @@ public class appController {
 	/**
 	 * Rotta che gestisce eccezioni riguardanti chiamate Post
 	 * @return wrongRequest exception
-	 * @throws wrongRequest se la richiesta non può essere processata
+	 * @throws wrongRequest se la richiesta non puo' essere processata
 	 */
 	@PostMapping("/error")
 	 public ResponseEntity<Object> errorPost() throws wrongRequest {

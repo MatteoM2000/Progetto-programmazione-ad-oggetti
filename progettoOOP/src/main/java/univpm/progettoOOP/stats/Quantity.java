@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 
 /**
- * Sottoclasse relativa alla statistica della quantità
+ * Sottoclasse relativa alla statistica della quantita'
  * @author Meloni Matteo
  * @author Rinaldi Alex
  * @version 1.0.0
@@ -17,7 +17,7 @@ import java.util.HashSet;
 public class Quantity extends Stats {
 	
 	/**
-	 * Statistica della quantità
+	 * Statistica della quantita'
 	 */
 	public int quantity;
 	
@@ -32,7 +32,7 @@ public class Quantity extends Stats {
 	}
 	
 	/**
-	 * Metodo che restituisce la quantità
+	 * Metodo che restituisce la quantita'
 	 * @return quantity
 	 */
 	
@@ -45,7 +45,7 @@ public class Quantity extends Stats {
 
 	/**
 	 * Metodo che elabora il calcolo della quantita' di domini
-	 * @return Ritorna JSONObject che contiene la quantità
+	 * @return Ritorna JSONObject che contiene la quantita'
 	 * @see Stats#calculateStat()
 	 */
     @SuppressWarnings("unchecked")

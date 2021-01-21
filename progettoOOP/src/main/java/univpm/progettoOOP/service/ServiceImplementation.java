@@ -41,7 +41,7 @@ public class ServiceImplementation implements DomainService{
 	
 	/**
 	 * Metodo che restituisce i domini
-	 * @return HashSet di domini commerciali non più attivi
+	 * @return HashSet di domini commerciali non piu' attivi
 	 * @throws APInotworking se l'API non restituisce domini con un URL standard verificato
 	 * @see DownloadJSON#APIcall()
 	 */
@@ -69,10 +69,10 @@ public class ServiceImplementation implements DomainService{
 	
 	/**
 	 * Metodo che restituisce i domini filtrati per i parametri in input
-	 * @param domain Testo che dovrà essere contenuto nel nome del dominio
+	 * @param domain Testo che dovra' essere contenuto nel nome del dominio
 	 * @param hosting Paese di hosting
-	 * @param update Substring che dovrà essere presente nella data di update
-	 * @param create Mese dell'anno in cui il dominio è stato creato
+	 * @param update Substring che dovra' essere presente nella data di update
+	 * @param create Mese dell'anno in cui il dominio e' stato creato
 	 * @return HashSet di domini filtrati secondo i parametri
 	 * @throws APIunreachable se l'API non restituisce i domini desiderati
 	 * @see DownloadJSON#APIcall()
@@ -104,7 +104,7 @@ public class ServiceImplementation implements DomainService{
 	
 	/**
 	 * Metodo che restituisce i domini filtrati per il JSONObject in input
-	 * @param filterBody JSONObject che conterrà i filtri da applicare
+	 * @param filterBody JSONObject che conterra' i filtri da applicare
 	 * @return HashSet di domini filtrati secondo il JSONObject
 	 * @throws APIunreachable se l'API non restituisce i domini desiderati
 	 * @see DownloadJSON#APIcall()
@@ -137,10 +137,10 @@ public class ServiceImplementation implements DomainService{
 	
 	/**
 	 * Metodo che calcola statistiche su un HashSet di domini filtrati o meno
-	 * @param domain Testo che dovrà essere contenuto nel nome del dominio
+	 * @param domain Testo che dovra' essere contenuto nel nome del dominio
 	 * @param hosting Paese di hosting
-	 * @param update Substring che dovrà essere presente nella data di update
-	 * @param create Mese dell'anno in cui il dominio è stato creato
+	 * @param update Substring che dovra' essere presente nella data di update
+	 * @param create Mese dell'anno in cui il dominio e' stato creato
 	 * @return JSONObject contenente le varie statistiche
 	 * @throws APIunreachable se l'API non restituisce i domini desiderati
 	 */

@@ -2,8 +2,12 @@ package univpm.progettoOOP.stats;
 
 import univpm.progettoOOP.model.Domain;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.FileReader;
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -31,43 +35,39 @@ public class Keywords extends Stats {
 	}
 	
 	/**
-	 * Metodo che elabora il conteggio delle parole chiave
+	 * Metodo che elabora il conteggio delle parole chiave sulla base di un JSONArray contenente le parole inglesi piu' utilizzate
 	 * @return JSONObject con le parole chiave presenti nei domini
 	 * @see Stats#calculateStat()
 	 */
 	
 	@SuppressWarnings("unchecked")
 	public JSONObject calculateStat() {
-    	int contFinancial = 0, contBusiness = 0, contLogin = 0, contMarketing = 0, contArchive = 0;
-    	int contAltro = 0;
-    	
-    	for(Domain d: super.domainList) {
-    		if(d.getDomain().contains("financial") | d.getDomain().contains("business") 
-    				| d.getDomain().contains("login") | d.getDomain().contains("marketing")
-    				| d.getDomain().contains("archive")) {
-    			
-    			if(d.getDomain().contains("financial"))
-        			contFinancial++;
-        		if(d.getDomain().contains("business"))
-        				contBusiness++;
-            	if(d.getDomain().contains("login"))
-            				contLogin++;
-                if(d.getDomain().contains("marketing"))
-                				contMarketing++;
-                if(d.getDomain().contains("archive"))
-                    				contArchive++;
-    		}
-    		else
-    			contAltro++;		
-        }        				
-        
-    	this.Keyword.put("financial", contFinancial);
-    	this.Keyword.put("business", contBusiness);
-    	this.Keyword.put("login", contLogin);
-    	this.Keyword.put("marketing", contMarketing);
-    	this.Keyword.put("archive", contArchive);
-    	this.Keyword.put("altro", contAltro);
-    
+    	HashMap <String, Integer> findedWords = new HashMap<>();
+		JSONParser parser = new JSONParser();
+		
+		try {
+			Object object = parser.parse(new FileReader("src//main//resources/keywords.json"));
+			JSONObject commonWords = (JSONObject)object;
+			JSONArray a = (JSONArray) commonWords.get("commonWords");
+			String s;
+			for(Object o: a) {
+				s = (String) o;
+				for(Domain d: this.domainList) {
+					if(d.getDomain().contains(s)) {
+						if(findedWords.containsKey(s))
+							findedWords.compute(s,(key,val) -> val+1);
+						else findedWords.put(s, 1);
+					}
+				}
+			}
+		}catch(Exception e) {
+			e.getMessage();
+			e.getStackTrace();
+		}
+		
+		if(findedWords.size()!=0)
+			this.Keyword.put("Keywords trovate",findedWords);
+		else this.Keyword.put("Keywords trovate", 0);
     	return Keyword;
     	
     }	

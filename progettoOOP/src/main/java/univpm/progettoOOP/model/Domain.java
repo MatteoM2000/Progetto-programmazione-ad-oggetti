@@ -30,7 +30,7 @@ public class Domain {
 	public String country;
 	
 	/**
-	 * Indica se il dominio è scaduto
+	 * Indica se il dominio e' scaduto
 	 */
 	public String isDead;
 	
@@ -40,7 +40,7 @@ public class Domain {
 	 * @param domain Nome del dominio
 	 * @param createDate Data di creazione del dominio
 	 * @param updateDate Data dell'ultimo update
-	 * @param country Nazionalità del dominio
+	 * @param country Nazionalita' del dominio
 	 * @param isDead Indica se il dominio è scaduto
 	 */
 	public Domain(String domain, String createDate, String updateDate, String country, String isDead) {
@@ -103,7 +103,7 @@ public class Domain {
 
 	
 	/**
-	 * Restituisce la nazionalità del dominio
+	 * Restituisce la nazionalita' del dominio
 	 * @return country
 	 */
 	public String getCountry() {
@@ -111,7 +111,7 @@ public class Domain {
 	}
 
 	/**
-	 * Imposta la nazionalità del dominio
+	 * Imposta la nazionalita' del dominio
 	 * @param country
 	 */
 	public void setCountry(String country) {
@@ -120,7 +120,7 @@ public class Domain {
 
 	
 	/**
-	 * Restituisce true o false se il dominio è scaduto o meno
+	 * Restituisce true o false se il dominio e' scaduto o meno
 	 * @return isDead
 	 */
 	public String isDead() {
@@ -128,7 +128,7 @@ public class Domain {
 	}
 
 	/**
-	 * Imposta se il dominio è scaduto
+	 * Imposta se il dominio e' scaduto
 	 * @param isDead
 	 */
 	public void setDead(String isDead) {
