@@ -2,11 +2,11 @@
 
 ### INTRODUZIONE ALL'APPLICAZIONE SPRINGBOOT
 L'applicazione sviluppata nell'ambito di questo progetto, si prefigge lo scopo di implementare un sistema in grado di ottenere in Input e gestire alcune operazioni per i **domini commerciali (.com)** non più attivi , sfruttando l'**API Reference** [Domains-Index](https://api.domainsdb.info/v1/ "Domains-Index").
-Si tratta di un'applicazione **Spring Boot**, progetto del **framework** [Spring](https://spring.io/ "Spring")  , grazie ad esso viene semplificato lo sviluppo, poiché effettua una configurazione automatica , sulla
+Si tratta di un'applicazione **Spring Boot**, progetto del **framework** [Spring](https://spring.io/ "Spring")  , grazie ad esso viene semplificato lo sviluppo, poiché effettua una configurazione automatica dei metadati per il corretto funzionamento dell'applicazione sulla
 base di valori di default.
 ### FUNZIONI E  UTILIZZO PRATICO
-Le principali funzioni implementate in questo progetto corrispondono alla **generazione di statistiche** e all'**operazione di filtraggio**, le quali sono possibili contemporaneamente, relative ai Domini restituiti dalla REST API.
-Una possibile finalità del progetto è quella di consentire ad un utente di accedere alle funzionalità implementate attraverso un Client come [Postman](https://www.postman.com// "Postman"), strumento per testare un'API REST in API Gateway.
+Le principali funzioni implementate in questo progetto corrispondono alla **generazione di statistiche** e all'**operazione di filtraggio**, possibili contemporaneamente, relative ai Domini restituiti dalla WEB API.
+Una possibile finalità del progetto è quella di consentire ad un utente di accedere alle funzionalità implementate attraverso un Client come [Postman](https://www.postman.com// "Postman"), strumento per testare un'API REST.
 
 ------------
 
@@ -39,7 +39,7 @@ Questo **diagramma UML** consente di descrivere tipi di entità(classi) presenti
 
 ### GET /Domains
 
-La rotta **getDomains** ha il compito fondamentale di comunicare con l'API attraverso un URL Verificato e restituire all'applicazione la lista dei domini commerciali non più attivi, i quali vengono inseriti in un HashSet chiamato **"domainList"**.
+La rotta **getDomains** ha il compito fondamentale di comunicare con l'API attraverso un URL verificato e restituire all'applicazione la lista dei domini commerciali non più attivi, i quali vengono inseriti in un **HashSet**.
 C'è la possibilità che venga lanciata l'**eccezione "APInotworking"** nel caso in cui non vengano restituiti i domini attesi.
 
 #### Esempio di chiamata su POSTMAN
@@ -82,12 +82,11 @@ Essa lavora in modo diverso per quanto riguarda l'inserimento dei parametri(i qu
 
 ### GET /stats
 
-La rotta **getStats**  ha la funzione di calcolare e generare le statistiche relative ad un HashSet di domini già filtrati secondo alcuni parametri, oppure a partire da un HashSet di domini non filtrati.
-In ogni caso essa richiama la rotta **/filter** e di conseguenza c'è la possibiltà che venga lanciata l'eccezione **"APIunreachable"**.
+La rotta **getStats**  ha la funzione di calcolare e generare le statistiche relative ad un HashSet di domini filtrati secondo alcuni parametri, oppure a partire da un HashSet di domini non filtrati. Le parole chiave da ricercare sono le parole inglesi più utilizzate nella lingua parlata. Esse sono circa 950 e si trovano nel file **keywords.json** nella cartella resources del programma.
+La rotta richiama il metodo **getFilter** della rotta **/filter** per poter generare statistiche sui domini desiderati, di conseguenza c'è la possibiltà che venga lanciata l'eccezione **"APIunreachable"**.
 
-#### Esempio di chiamata su POSTMAN (con filtro per HostingCountry)
-![getstats1](https://user-images.githubusercontent.com/77545538/105339818-68422f00-5bdd-11eb-8f4c-8d3a4d68127f.png)
-![getstats2](https://user-images.githubusercontent.com/77545538/105339835-6c6e4c80-5bdd-11eb-9522-18f728ae2118.png)
+#### Esempio di chiamata su POSTMAN (con filtro per il nome del dominio **domain**)
+![Screenshot (30)](https://user-images.githubusercontent.com/74960687/105376045-9c334980-5c09-11eb-8391-2d822196e365.png)
 
 #### Riepilogo statistiche
 
@@ -99,14 +98,14 @@ In ogni caso essa richiama la rotta **/filter** e di conseguenza c'è la possibi
 
 ### /error
 
-La rotta **/error** è suddivisa in chiamate **GET** e in chiamate **POST**, essa si occupa della gestione di eccezioni dovute all'immissione di rotte non implementate nel software, ciò può accadare per via di errori di battitura.
+La rotta **/error**, per le chiamate **GET** e **POST**, si occupa della gestione di eccezioni dovute all'immissione di rotte non implementate nel software lanciando l'eccezione **WrongRequest**. Ciò può accadare ad esempio per via di errori di battitura.
 
 
 ------------
 
 ## ECCEZIONI
 
-Ecco la lista delle **eccezioni personalizzate** inserite nell'applicazione:
+Ecco la lista delle **eccezioni** specifiche pensate ed inserite nell'applicazione:
 
 ### APInotworking
 
@@ -153,7 +152,7 @@ Questo **diagramma UML** viene utilizzato per descrivere uno scenario, nel quale
 
 ## JUNIT TEST
 
-Nell'applicazione è stata implementata una sezione di testing attraverso l'utilizzo di [JUNIT5](https://junit.org/junit5/ "JUNIT5").
+Nell'applicazione è stata implementata una sezione di testing attraverso l'utilizzo di [JUNIT](https://junit.org/junit5/ "JUNIT5").
 
 1. **APITest**: Verifica restituzione HashSet non nullo dall'API.
 1. **FilterTest**: Verifica di un particolare filtro, in questo caso controlla che il mese della data di creazione dei domini sia Giugno.
