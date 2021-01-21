@@ -119,6 +119,7 @@ Il messaggio restituito è:
 Come è stato esposto precedentemente, questa eccezione viene lanciata nell'ambito della chiamata **/filter**, nel caso in cui i parametri inseriti dovessero generare una **filteredList vuota**. Allo stesso tempo potrebbe verificarsi il fatto che sia l'API non funzionante a generare l'eccezione, quindi è consigliabile fare un tentativo con la rotta: **GET /domains** , allo scopo di controllare se **"APInotworking"** viene lanciata.
 
 ESEMPIO DI ECCEZIONE
+
 ![eccezioneunreachable](https://user-images.githubusercontent.com/77545538/105343262-af322380-5be1-11eb-94a2-2c03df6de9cf.png)
 
 ### WrongRequest
@@ -127,6 +128,7 @@ Questa eccezione si riallaccia direttamente alla rotta **/error**, ovvero viene 
 `"Rotta non implementata!"`
 
 ESEMPIO
+
 ![wrongrequest](https://user-images.githubusercontent.com/77545538/105343850-75ade800-5be2-11eb-8d0e-7da823f2da5f.png)
 
 
