@@ -36,3 +36,41 @@ Questo **diagramma UML** consente di descrivere tipi di entità(classi) presenti
 |POST   |  /filter |
 |  GET | /error  |
 |  POST | /error  |
+
+### GET /Domains
+
+La rotta **getDomains** ha il compito fondamentale di comunicare con l'API attraverso un URL Verificato e restituire all'applicazione la lista dei domini commerciali non più attivi, i quali vengono inseriti in un HashSet chiamato **"domainList"**.
+C'è la possibilità che venga lanciata l'**eccezione "APInotworking"** nel caso in cui non vengano restituiti i domini attesi.
+
+#### Esempio di chiamata su POSTMAN
+![getDomains](https://user-images.githubusercontent.com/77545538/105328548-70e03880-5bd0-11eb-8797-49fc0016c3b1.png)
+
+Il risultato riportato è in formato JSON e ciascun dominio è descritto dai seguenti campi:
+- **domain**: Nome del dominio
+- **createDate**: Data di creazione del dominio
+- **updateDate**: Data dell'ultimo aggiornamento
+- **country** : Nazione di hosting
+- **isDead** : Attività o inattività del dominio (scadenza)
+
+### GET /metadata
+
+La rotta **getMetadata**, come suggerito dal nome restituisce i metadati relativi al modello di ciascun dominio in JSON, essi coincidono con il tipo di dato per ciascun campo.
+
+#### Esempio di chiamata su POSTMAN
+![getMetadata](https://user-images.githubusercontent.com/77545538/105330847-0da3d580-5bd3-11eb-8345-8124eb464f8f.png)
+
+### GET /filter
+
+La rotta **getFilter** si occupa dell'operazione di filtraggio dei domini, in essa è stata implementata la possibilità di inserire contemporaneamente fino a **4 parametri di filtraggio** in input, grazie alla logica "And". Il risultato finale sarà la restituzione di un HashSet composto dai domini filtrati secondo gli input inseriti.
+C’è la possibilità che venga lanciata l’**eccezione “APIunreachable”** nel caso in cui uno o più parametri nella chiamata getFilter non restituiscano risultati, generando un HashSet dei domini filtrati vuoto.
+
+#### Esempio di chiamata su POSTMAN
+![getFilter](https://user-images.githubusercontent.com/77545538/105333697-4e511e00-5bd6-11eb-8f27-1aaa01178c75.png)
+
+I parametri inseribili in input corrispondono a:
+- **domain**: Filtraggio per stringa contenuta nel nome del dominio
+- **createDate**: Filtraggio per il mese di creazione del dominio
+- **updateDate**: Filtraggio per substringa contenuta nella data dell'ultimo aggiornamento
+- **country** : Filtraggio per nazione di hosting
+
+### POST /filter
